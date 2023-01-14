@@ -1,0 +1,14 @@
+[package]
+name = "rubalosim"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+petgraph = "0.6.2"
+rand_distr = "0.4.3"
+rand = "0.8.5"
+chrono = "0.4.23"
+chirpstack_api = "3.11.1"
+elorapi = {git = "htpps://github.com/boehme-thomas/elorapi", version="0.1.2"}
