@@ -162,41 +162,41 @@ impl Simulator {
             .create(true)
             .open(path).unwrap();
 
-        let data = "Start of the simulation: ".to_owned() + start.to_string().as_str();
+        let data = "Start of the simulation: ".to_owned() + start.to_string().as_str() + "\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "End of the simulation: ".to_owned() + ending.to_string().as_str();
+        let data = "End of the simulation: ".to_owned() + ending.to_string().as_str() + "\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "Length of simulation: ".to_owned() + length.to_string().as_str() + "\n";
+        let data = "Length of simulation: ".to_owned() + length.to_string().as_str() + "\n\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "Start of rule execution: ".to_owned() + rule_start.to_string().as_str();
+        let data = "Start of rule execution: ".to_owned() + rule_start.to_string().as_str()+ "\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "End of rule execution: ".to_owned() + rule_start.to_string().as_str();
+        let data = "End of rule execution: ".to_owned() + rule_start.to_string().as_str() + "\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "Length of rule execution: ".to_owned() + rule_length.to_string().as_str() + "\n";
+        let data = "Length of rule execution: ".to_owned() + rule_length.to_string().as_str() + "\n\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "Length of event list: ".to_owned() + eventlist_len.to_string().as_str() + "\n";
+        let data = "Length of event list: ".to_owned() + eventlist_len.to_string().as_str() + "\n\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "Number of messages: ".to_owned() + number_of_messages.to_string().as_str();
+        let data = "Number of messages: ".to_owned() + number_of_messages.to_string().as_str() + "\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "Number of uplink messages: ".to_owned() + ups.to_string().as_str();
+        let data = "Number of uplink messages: ".to_owned() + ups.to_string().as_str()+ "\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "Number of downlink messages: ".to_owned() + downs.to_string().as_str() + "\n";
+        let data = "Number of downlink messages: ".to_owned() + downs.to_string().as_str() + "\n\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "Number of downlink and uplink messages per sensor type:".to_owned();
+        let data = "Number of downlink and uplink messages per sensor type:".to_owned() + "\n";
         f.write(data.as_bytes()).unwrap();
 
         for i in 0..dow_ups_vec.len() {
-            let data = "\t ".to_owned() + "Sensor type " + i.to_string().as_str() + ": " + dow_ups_vec[i].1.to_string().as_str() + " uplink messages, " + dow_ups_vec[i].0.to_string().as_str() + "downlink_messages,";
+            let data = "\t ".to_owned() + "Sensor type " + i.to_string().as_str() + ": " + dow_ups_vec[i].1.to_string().as_str() + " uplink messages, " + dow_ups_vec[i].0.to_string().as_str() + "downlink_messages," + "\n";
             f.write(data.as_bytes()).unwrap();
         }
     }
