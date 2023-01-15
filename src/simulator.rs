@@ -143,11 +143,11 @@ impl Simulator {
 
         let ending = self.evaluation.get_simulation_ending();
         let start = self.evaluation.get_simulation_star_up();
-        let length = ending-start;
+        let length = (ending-start).to_string().replace("PT", "").replace("S"," sec");
 
         let rule_ending = self.evaluation.get_rule_execution_ended();
         let rule_start = self.evaluation.get_rule_execution_started();
-        let rule_length = rule_ending-rule_start;
+        let rule_length = (rule_ending-rule_start).to_string().replace("PT", "").replace("S"," sec");
 
         let dow_ups_vec = self.evaluation.get_downlink_uplink_messages_per_sensor_type();
         let downs = self.evaluation.get_downlink_messages();
@@ -162,7 +162,7 @@ impl Simulator {
             .create(true)
             .open(path).unwrap();
 
-        let data = "Start of the simulation: ".to_owned() + start.to_string().as_str() + "\n";
+        let data = "Start of the simulation: ".to_owned() + start.to_string().as_str()+"\n";
         f.write(data.as_bytes()).unwrap();
 
         let data = "End of the simulation: ".to_owned() + ending.to_string().as_str() + "\n";
@@ -174,7 +174,7 @@ impl Simulator {
         let data = "Start of rule execution: ".to_owned() + rule_start.to_string().as_str()+ "\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "End of rule execution: ".to_owned() + rule_start.to_string().as_str() + "\n";
+        let data = "End of rule execution: ".to_owned() + rule_ending.to_string().as_str() + "\n";
         f.write(data.as_bytes()).unwrap();
 
         let data = "Length of rule execution: ".to_owned() + rule_length.to_string().as_str() + "\n\n";
@@ -192,11 +192,11 @@ impl Simulator {
         let data = "Number of downlink messages: ".to_owned() + downs.to_string().as_str() + "\n\n";
         f.write(data.as_bytes()).unwrap();
 
-        let data = "Number of downlink and uplink messages per sensor type:".to_owned() + "\n";
+        let data = "Number of downlink and uplink messages per sensor type:".to_owned();
         f.write(data.as_bytes()).unwrap();
 
         for i in 0..dow_ups_vec.len() {
-            let data = "\t ".to_owned() + "Sensor type " + i.to_string().as_str() + ": " + dow_ups_vec[i].1.to_string().as_str() + " uplink messages, " + dow_ups_vec[i].0.to_string().as_str() + "downlink_messages," + "\n";
+            let data = "\n\t ".to_owned() + "Sensor type " + i.to_string().as_str() + ": " + dow_ups_vec[i].1.to_string().as_str() + " uplink messages, " + dow_ups_vec[i].0.to_string().as_str() + " downlink_messages,";
             f.write(data.as_bytes()).unwrap();
         }
     }
@@ -266,7 +266,7 @@ impl Simulator {
             // create creation event with a random start node
             // get a normal distributed value, add the start time and round to two decimals
             let milliseconds = (v*60.0*60.0*1_000.0).round() as i64;
-            let duration = chrono::Duration::milliseconds(milliseconds);
+            let duration = Duration::milliseconds(milliseconds);
             let creation_time = start+duration;
             // get a uniform distributed index of the start nodes
             let creation_node_index = rng.gen_range(0..range_start_nodes);
@@ -321,7 +321,7 @@ impl Simulator {
             // create deletion event with a random end node
             // get a normal distributed value, add the end time and round to two decimals
             let milliseconds = (v*60.0*60.0*1_000.0).round() as i64;
-            let duration = chrono::Duration::milliseconds(milliseconds);
+            let duration = Duration::milliseconds(milliseconds);
             let deletion_time = end + duration;
             // get a uniform distributed index of the end nodes
             let deletion_node_index = rng.gen_range(0..range_end_nodes);
