@@ -699,7 +699,7 @@ impl Simulator {
                             if time_vec_bool.contains(&true){
                                 bool_values.push(true);
                             } else {
-                                continue 'rule
+                                bool_values.push(false);
                             }
                         },
                     }
